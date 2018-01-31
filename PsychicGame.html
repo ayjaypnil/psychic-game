@@ -20,20 +20,23 @@
             var guessesLeft = document.getElementById("guessesLeft").innerHTML = 10;
             var losses = document.getElementById("losses").innerHTML = 0;
             var alreadyGuessed = [];
-
+            var computerGuess = null;
             // The possible selections for the computer to pick from
-                var computerPossGuess = ["a", "b", "c", "d", "e", "f", "g"];
+                // var computerPossGuess = ["a", "b", "c", "d", "e", "f", "g"];
             // a random selection from the array of possibile selections the computer can pick from
-                var computerGuess = computerPossGuess[Math.floor(Math.random() * computerPossGuess.length)];
+                // var computerGuess = computerPossGuess[Math.floor(Math.random() * computerPossGuess.length)];
             // console.log the computer guess to make sure it is working and know what the computer has guessed
-                console.log(computerGuess);
+                // console.log(computerGuess);
 
-            // // Function for getting another random number to guess by the computer
-            function reset(computerGuess){
+            // // Function for getting another random letter to guess by the computer
+            function reset(){
                 var computerPossGuess = ["a", "b", "c", "d", "e", "f", "g"];
-                var computerGuess = computerPossGuess[Math.floor(Math.random() * computerPossGuess.length)];
+                computerGuess = computerPossGuess[Math.floor(Math.random() * computerPossGuess.length)];
                 console.log(computerGuess);
                 }
+                
+            // initial letter guessed by computer
+            reset();
 
 // *NEED TO CREATE A RESET MECHANISM!! for the letter ro re randomize and be used in the main computer guess variable and end the game etc.
 
@@ -51,10 +54,13 @@
                     document.getElementById("wins").textContent = wins+=1;
                     // reset the guesses left if the letter is guessed right
                     document.getElementById("guessesLeft").textContent = guessesLeft = 10; 
-                    // reset the previously guessed letters to nothing in the array
+                     // reset the previously guessed letters to nothing in the array buth visually in HTML and actually in the array data
                     document.getElementById("alreadyGuessed").innerHTML = [];
+                    for (i = alreadyGuessed.length; i > 0; i--) {
+                        alreadyGuessed.pop();
+                    }
                     // generate another random number by the computer
-                    reset(computerGuess);
+                    reset();
 
                 } else if (guessesLeft == 0){
                     // Add 1 to losses if guesses left hits 0
@@ -62,7 +68,7 @@
                      // reset the guesses left if the letter is guessed wrong 10 times
                     document.getElementById("guessesLeft").textContent = guessesLeft = 10; 
                     // generate another random letter by the computer (plus clear the already guessed)
-                    reset(computerGuess);
+                    reset();
                     // reset the previously guessed letters to nothing in the array buth visually in HTML and actually in the array data
                     document.getElementById("alreadyGuessed").innerHTML = [];
                     for(i = alreadyGuessed.length; i > 0; i--){
