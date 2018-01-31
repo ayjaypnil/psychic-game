@@ -1,0 +1,92 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>Psychic Game</title>
+    </head>
+    <body>
+        <div id= "game">
+
+            <h1>The Psychic Game</h1>
+            <h3>Guess what letter I am thinking of [a-z]!</h3>
+            <h3>Wins: <span id="wins"></span></h3>
+            <h3>Losses: <span id="losses"></span></h3>
+            <h3>Guesses Left: <span id="guessesLeft"></span></h3>
+            <h3>Your Guesses so far: <span id="alreadyGuessed"></span></h3>
+
+        </div>
+
+        <script type="text/javascript">
+            var wins = document.getElementById("wins").innerHTML = 0;
+            var guessesLeft = document.getElementById("guessesLeft").innerHTML = 10;
+            var losses = document.getElementById("losses").innerHTML = 0;
+            var alreadyGuessed = [];
+
+            // The possible selections for the computer to pick from
+                var computerPossGuess = ["a", "b", "c", "d", "e", "f", "g"];
+            // a random selection from the array of possibile selections the computer can pick from
+                var computerGuess = computerPossGuess[Math.floor(Math.random() * computerPossGuess.length)];
+            // console.log the computer guess to make sure it is working and know what the computer has guessed
+                console.log(computerGuess);
+
+            // // Function for getting another random number to guess by the computer
+            function reset(computerGuess){
+                var computerPossGuess = ["a", "b", "c", "d", "e", "f", "g"];
+                var computerGuess = computerPossGuess[Math.floor(Math.random() * computerPossGuess.length)];
+                console.log(computerGuess);
+                }
+
+// *NEED TO CREATE A RESET MECHANISM!! for the letter ro re randomize and be used in the main computer guess variable and end the game etc.
+
+            // when a key is pressed, an 'event' will be triggered
+            document.onkeyup = function (event){
+                // When user hits a key that is the first guess
+                var userGuess = event.key;
+                 // console.log the user guess to make sure it is working
+                    //  console.log(userGuess);               
+                // if else statement to check if the logic works or not
+                if(computerGuess == userGuess){
+                    // if the computer and user guesses are the same then console.log a win
+                        // console.log("win");
+                    // Now try adding +1 to the wins column
+                    document.getElementById("wins").textContent = wins+=1;
+                    // reset the guesses left if the letter is guessed right
+                    document.getElementById("guessesLeft").textContent = guessesLeft = 10; 
+                    // reset the previously guessed letters to nothing in the array
+                    document.getElementById("alreadyGuessed").innerHTML = [];
+                    // generate another random number by the computer
+                    reset(computerGuess);
+
+                } else if (guessesLeft == 0){
+                    // Add 1 to losses if guesses left hits 0
+                    document.getElementById("losses").textContent = losses += 1; 
+                     // reset the guesses left if the letter is guessed wrong 10 times
+                    document.getElementById("guessesLeft").textContent = guessesLeft = 10; 
+                    // generate another random letter by the computer (plus clear the already guessed)
+                    reset(computerGuess);
+                    // reset the previously guessed letters to nothing in the array buth visually in HTML and actually in the array data
+                    document.getElementById("alreadyGuessed").innerHTML = [];
+                    for(i = alreadyGuessed.length; i > 0; i--){
+                        alreadyGuessed.pop();
+                    }
+
+                } else if(computerGuess !== userGuess){
+                    // Now subtract one from 10 if guessed wrong
+                    document.getElementById("guessesLeft").textContent = guessesLeft-=1; 
+                    // add the letter to the array for already guessed
+                    alreadyGuessed.push(userGuess);
+                        // This prints the array after the addition
+                    for(i = 0;i < alreadyGuessed.length; i++){
+                        // console.log(alreadyGuessed);
+                        document.getElementById("alreadyGuessed").innerHTML = alreadyGuessed;
+                    }
+                } 
+            
+            }
+
+            
+
+        </script>
+        
+
+    </body>
+</html>
