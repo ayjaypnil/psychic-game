@@ -21,24 +21,16 @@
             var losses = document.getElementById("losses").innerHTML = 0;
             var alreadyGuessed = [];
             var computerGuess = null;
-            // The possible selections for the computer to pick from
-                // var computerPossGuess = ["a", "b", "c", "d", "e", "f", "g"];
-            // a random selection from the array of possibile selections the computer can pick from
-                // var computerGuess = computerPossGuess[Math.floor(Math.random() * computerPossGuess.length)];
-            // console.log the computer guess to make sure it is working and know what the computer has guessed
-                // console.log(computerGuess);
 
             // // Function for getting another random letter to guess by the computer
             function reset(){
-                var computerPossGuess = ["a", "b", "c", "d", "e", "f", "g"];
+                var computerPossGuess = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "u", "x", "y", "z"];
                 computerGuess = computerPossGuess[Math.floor(Math.random() * computerPossGuess.length)];
                 console.log(computerGuess);
                 }
-                
+
             // initial letter guessed by computer
             reset();
-
-// *NEED TO CREATE A RESET MECHANISM!! for the letter ro re randomize and be used in the main computer guess variable and end the game etc.
 
             // when a key is pressed, an 'event' will be triggered
             document.onkeyup = function (event){
